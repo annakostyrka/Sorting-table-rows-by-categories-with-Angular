@@ -1,0 +1,38 @@
+<select [(ngModel)]="currentCategory" (change)="selectCategory(currentCategory)">
+    <option *ngFor="let category of categories" name="category" [ngValue]="category.id">{{category.title}}</option>
+</select>
+
+<table class="table table-striped">
+    <tbody>
+        <tr [class.red-color]="product.isRed" *ngFor="let product of selectedData" [attr.id]="product.id">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.category}}</td>
+            <button (click)="deleteRow(product.id)">Delete</button> 
+        </tr>
+    </tbody>
+</table>
+
+<form>
+    <div class="form-group">
+        <label>Product name</label>
+        <input type="text" [(ngModel)]="newRow.name" id="name" name="name" class="form-control" #name/>
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="text" [(ngModel)]="newRow.price" id="price" name="price" class="form-control" #price/>
+    </div>
+    <div class="form-group">
+        <label>Category</label>
+        <select [(ngModel)]="currentCategory" name="select-category" id="name-category" class="form-control">
+        <option *ngFor="let category of categories" name="category.title" [ngValue]="category.id">{{category.title}}</option>
+        </select>
+    </div>
+</form>
+
+<button (click)="addRow(name.value,price.value)">Add new row</button>
+
+
+
+
